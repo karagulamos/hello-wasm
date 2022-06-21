@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebAssembly StockUp!</title>
+    <script src="/assets/js/runtime.js"></script>
+    <script>
+        const go = new Go();
+        WebAssembly.instantiateStreaming(fetch("/assets/il/stockup.wasm"), go.importObject).then((result) => {
+            go.run(result.instance);
+        });
+    </script>
+
+    <style>
+        body {
+            margin: 10px;
+            padding: 0;
+            font-family: sans-serif;
+            background-color: #ccdae6;
+        }
+
+        #asset-details {
+            margin: 10px 0;
+            display: block;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h3>WebAssembly StockUp!</h3>
+        <label for="asset-symbol">Symbol</label>
+        <input id="asset-symbol" name="asset-symbol" type="text">
+        <button type="button" id="asset-symbol-button">Get Details</button>
+
+        <div id="asset-details"></div>
+    </div>
+</body>
+
+</html>

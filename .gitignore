@@ -1,0 +1,7 @@
+# Local Netlify folder
+.netlify
+src
+site/*
+!site/*.html
+
+
